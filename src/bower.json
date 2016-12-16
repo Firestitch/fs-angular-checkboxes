@@ -1,0 +1,19 @@
+{
+  "name": "fs-angular-checkboxes",
+  "namespace": "checkboxes",
+  "port": "5039",
+  "moduleName": "app",
+  "version": "0.0.0",
+  "appPath": "app",
+  "dependencies": {
+    "angular": "1.6.0",
+    "angular-material": "1.1.1",
+    "angular-ui-router": "0.2.15",
+    "fs-boilerplate-styles": "latest",
+    "fs-angular-array": "^1.0.0",
+    "fs-angular-util": "^1.0.0"
+  },
+  "resolutions": {
+    "angular": "1.6.0"
+  }
+}
