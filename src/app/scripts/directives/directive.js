@@ -1,6 +1,16 @@
 (function () {
     'use strict';
 
+  /**
+   * @ngdoc directive
+   * @name fs.directives:fs-checkboxes
+   * @restrict E
+   * @param {array} fsModel The model used to store the selected values
+   * @param {array} fsItems The array of checkbox objects
+   * @param {string} fsLabel The label above the checkboxes
+   * @param {function} fsIndex A function to find the index of the checked object. By default the index is found by using indexOf().
+   * @param {string} fsTemplate The template used to format the checkbox. By default {{item.name}} is used.
+   */
     angular.module('fs-angular-checkboxes',['fs-angular-array','fs-angular-util'])
     .directive('fsCheckboxes', function(fsArray, fsUtil, $interpolate) {
         return {
