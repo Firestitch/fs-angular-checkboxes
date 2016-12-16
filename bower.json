@@ -1,9 +1,8 @@
 {
-  "name": "fs-angular",
+  "name": "fs-angular-checkboxes",
   "description": "",
   "main": [
-    "dist/.js",
-    "dist/.css"
+    "dist/checkboxes.js"
   ],
   "dependencies": {
   	"fs-angular-array": "^1.0.0",
