@@ -39,7 +39,12 @@
 
             	if(!$scope.index) {
             		$scope.index = function(item) {
-            			return fsArray.indexOf($scope.model,item);
+					    for(var i=0; i < $scope.model.length; i++) {
+					        if(angular.equals($scope.model[i], item)) {
+					            return i;
+					        }
+					    };
+					    return -1;
             		}
             	}
 
