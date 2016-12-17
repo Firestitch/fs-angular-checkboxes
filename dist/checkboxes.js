@@ -23,7 +23,8 @@
                items: "=fsItems",
                model: "=fsModel",
                index: "=?fsIndex",
-               template: "@fsTemplate"
+               template: "@fsTemplate",
+               class: "@fsClass"
             },
 
             link: function($scope, element, attrs, ctrl) {
@@ -78,7 +79,7 @@ angular.module('fs-angular-checkboxes').run(['$templateCache', function($templat
   'use strict';
 
   $templateCache.put('views/directives/checkboxes.html',
-    "<md-checkbox-container>\r" +
+    "<md-checkbox-container class=\"{{class}}\">\r" +
     "\n" +
     "    <label>{{label}}</label>\r" +
     "\n" +

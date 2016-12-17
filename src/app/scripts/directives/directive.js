@@ -22,7 +22,8 @@
                items: "=fsItems",
                model: "=fsModel",
                index: "=?fsIndex",
-               template: "@fsTemplate"
+               template: "@fsTemplate",
+               class: "@fsClass"
             },
 
             link: function($scope, element, attrs, ctrl) {
