@@ -9,6 +9,7 @@
    * @param {array} fsItems The array of checkbox objects
    * @param {string} fsLabel The label above the checkboxes
    * @param {function} fsIndex A function to find the index of the checked object. By default the index is found by using indexOf().
+   * @param {function} fsDisable A function that determines if the checkbox item is disabled
    * @param {string} fsTemplate The template used to format the checkbox. By default {{item.name}} is used.
    */
     angular.module('fs-angular-checkboxes',['fs-angular-array','fs-angular-util'])
@@ -21,6 +22,7 @@
                label: "@fsLabel",
                items: "=fsItems",
                model: "=fsModel",
+               disabled: "=fsDisabled",
                index: "=?fsIndex",
                template: "@fsTemplate",
                class: "@fsClass"
@@ -47,6 +49,12 @@
             		}
             	}
 
+            	if(!$scope.disabled) {
+            		$scope.disabled = function(item) {
+            			return false;
+            		}
+            	}
+
         		$scope.exists = function(item) {
         			return $scope.index(item)>=0;
         		}
@@ -57,11 +65,14 @@
 
                 $scope.click = function(item) {
                 	var index = $scope.index(item);
+                	var items = angular.copy($scope.model);
                 	if(index>=0) {
-                		$scope.model.splice(index,1);
+                		items.splice(index,1);
                 	} else {
-                		$scope.model.push(item);
+                		items.push(item);
                 	}
+
+                	$scope.model = items;
                 }
 
                 $scope.names = [];

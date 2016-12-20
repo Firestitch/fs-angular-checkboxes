@@ -4,6 +4,7 @@
         ng-repeat="item in items"
         ng-checked="exists(item)"
         ng-click="click(item)"
+        ng-disabled="disabled(item)"
         name="{{names[$index]}}">
         {{templates[$index]}}
     </md-checkbox>

@@ -14,5 +14,9 @@
     $scope.submit = function() {
         alert('submit');
     }
+
+    $scope.disabled = function(item) {
+    	return item.id == 3;
+    }
 });
 
