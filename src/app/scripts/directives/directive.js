@@ -22,7 +22,7 @@
                label: "@fsLabel",
                items: "=fsItems",
                model: "=fsModel",
-               disabled: "=fsDisabled",
+               disabled: "=?fsDisabled",
                index: "=?fsIndex",
                template: "@fsTemplate",
                class: "@fsClass"
