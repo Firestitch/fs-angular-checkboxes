@@ -12,6 +12,8 @@
    * @param {function} fsIndex A function to find the index of the checked object. By default the index is found by using indexOf().
    * @param {function} fsDisable A function that determines if the checkbox item is disabled
    * @param {string} fsTemplate The template used to format the checkbox. By default {{item.name}} is used.
+   * @param {string} fsClass The class to be applied to the md-checkbox-container
+   * @param {expression} fsRequired Requires at least on checkbox to be selected to be valid in a form
    */
     angular.module('fs-angular-checkboxes',['fs-angular-array','fs-angular-util'])
     .directive('fsCheckboxes', function(fsArray, fsUtil, $interpolate) {
@@ -26,10 +28,31 @@
                disabled: "=?fsDisabled",
                index: "=?fsIndex",
                template: "@fsTemplate",
-               class: "@fsClass"
+               class: "@fsClass",
+               required: "=?fsRequired"
             },
+            controller: ['$scope',function($scope) {
 
+                $scope.names = [];
+                $scope.templates = [];
+                $scope.$watch('items',function(items) {
+                	if(items) {
+                		angular.forEach(items,function(item,idx) {
+	                		$scope.names[idx] = 'checkbox_' + fsUtil.guid();
+	                		$scope.templates[idx] = $interpolate($scope.template)({ item: item });
+	                	});
+	                }
+                });
+
+            	$scope.name = fsUtil.guid();
+            	$scope.checkboxesModel = {};
+            	$scope.models = {};
+            }],
             link: function($scope, element, attrs, ctrl) {
+
+            	if($scope.required) {
+            		angular.element(element).attr('required','required');
+            	}
 
             	if(!$scope.model) {
             		$scope.model = [];
@@ -65,27 +88,21 @@
                 }
 
                 $scope.click = function(item) {
-                	var index = $scope.index(item);
-                	var items = angular.copy($scope.model);
-                	if(index>=0) {
-                		items.splice(index,1);
-                	} else {
-                		items.push(item);
-                	}
 
-                	$scope.model = items;
+                	if(!$scope.disabled(item)) {
+
+	                	var index = $scope.index(item);
+	                	var items = angular.copy($scope.model);
+	                	if(index>=0) {
+	                		items.splice(index,1);
+	                	} else {
+	                		items.push(item);
+	                	}
+
+	                	$scope.model = items;
+	                }
                 }
 
-                $scope.names = [];
-                $scope.templates = [];
-                $scope.$watch('items',function(items) {
-                	if(items) {
-                		angular.forEach(items,function(item,idx) {
-	                		$scope.names[idx] = 'checkbox_' + fsUtil.guid();
-	                		$scope.templates[idx] = $interpolate($scope.template)({ item: item });
-	                	});
-	                }
-                });
             }
         };
     });
@@ -95,7 +112,7 @@ angular.module('fs-angular-checkboxes').run(['$templateCache', function($templat
   'use strict';
 
   $templateCache.put('views/directives/checkboxes.html',
-    "<md-checkbox-container class=\"{{class}}\">\r" +
+    "<md-checkbox-container class=\"{{class}}\" name=\"checkboxes_{{name}}\" ng-model=\"checkboxesModel\">\r" +
     "\n" +
     "    <label>{{label}}</label>\r" +
     "\n" +
@@ -108,6 +125,8 @@ angular.module('fs-angular-checkboxes').run(['$templateCache', function($templat
     "        ng-click=\"click(item)\"\r" +
     "\n" +
     "        ng-disabled=\"disabled(item)\"\r" +
+    "\n" +
+    "        ng-model=\"models[$index]\"\r" +
     "\n" +
     "        name=\"{{names[$index]}}\">\r" +
     "\n" +

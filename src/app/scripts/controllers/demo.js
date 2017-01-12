@@ -12,6 +12,7 @@
     				{ id: 4, name: 'Checkbox4' }];
 
     $scope.submit = function() {
+    	debugger;
         alert('submit');
     }
 

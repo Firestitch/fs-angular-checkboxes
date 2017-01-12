@@ -1,5 +1,9 @@
-<fs-checkboxes fs-label="Checkboxes" fs-items="items" fs-model="model" fs-disabled="disabled"></fs-checkboxes>
 
+<form fs-validate="submit()">
+	<fs-checkboxes fs-label="Checkboxes" fs-items="items" fs-model="model" fs-disabled="disabled" fs-required="true"></fs-checkboxes>
+
+	<md-button type="submit">Submit</md-button>
+</form>
 
 <br><br><br>
 {{model}}

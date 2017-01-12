@@ -1,10 +1,11 @@
-<md-checkbox-container class="{{class}}">
+<md-checkbox-container class="{{class}}" name="checkboxes_{{name}}" ng-model="checkboxesModel">
     <label>{{label}}</label>
     <md-checkbox
         ng-repeat="item in items"
         ng-checked="exists(item)"
         ng-click="click(item)"
         ng-disabled="disabled(item)"
+        ng-model="models[$index]"
         name="{{names[$index]}}">
         {{templates[$index]}}
     </md-checkbox>

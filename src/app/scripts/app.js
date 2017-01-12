@@ -5,7 +5,8 @@ angular
     'config',
     'ui.router',
     'ngMaterial',
-    'fs-angular-checkboxes'
+    'fs-angular-checkboxes',
+    'fs-angular-validate'
 ])
 .config(function ($stateProvider, $urlRouterProvider) {
 
