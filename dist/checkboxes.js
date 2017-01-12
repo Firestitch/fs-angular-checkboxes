@@ -116,23 +116,27 @@ angular.module('fs-angular-checkboxes').run(['$templateCache', function($templat
     "\n" +
     "    <label>{{label}}</label>\r" +
     "\n" +
-    "    <md-checkbox\r" +
+    "    <div class=\"checkboxes\">\r" +
     "\n" +
-    "        ng-repeat=\"item in items\"\r" +
+    "\t    <md-checkbox\r" +
     "\n" +
-    "        ng-checked=\"exists(item)\"\r" +
+    "\t        ng-repeat=\"item in items\"\r" +
     "\n" +
-    "        ng-click=\"click(item)\"\r" +
+    "\t        ng-checked=\"exists(item)\"\r" +
     "\n" +
-    "        ng-disabled=\"disabled(item)\"\r" +
+    "\t        ng-click=\"click(item)\"\r" +
     "\n" +
-    "        ng-model=\"models[$index]\"\r" +
+    "\t        ng-disabled=\"disabled(item)\"\r" +
     "\n" +
-    "        name=\"{{names[$index]}}\">\r" +
+    "\t        ng-model=\"models[$index]\"\r" +
     "\n" +
-    "        {{templates[$index]}}\r" +
+    "\t        name=\"{{names[$index]}}\">\r" +
     "\n" +
-    "    </md-checkbox>\r" +
+    "\t        {{templates[$index]}}\r" +
+    "\n" +
+    "\t    </md-checkbox>\r" +
+    "\n" +
+    "\t</div>\r" +
     "\n" +
     "</md-checkbox-container>"
   );
